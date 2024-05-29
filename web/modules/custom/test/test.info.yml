@@ -1,0 +1,10 @@
+name: TEST
+description: A Resume form to enter user details.
+core_version_requirement: ^9 || ^10
+package: Custom
+type: module
+# name: Test module for email
+# type: module
+# core_version_requirement: ^9 || ^10
+# description: This is the test module for emailing purpose
+# packages: CUSTOM

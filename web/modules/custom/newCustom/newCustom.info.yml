@@ -1,0 +1,5 @@
+name: "custom new"
+type: module
+description: "Customize login functionality."
+package: Custom
+core_version_requirement: ^8 || ^9 ||10

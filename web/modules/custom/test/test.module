@@ -1,0 +1,102 @@
+<?php
+
+/**
+ * Implements hook_mail().
+ */
+function test_mail($key, &$message, $params) {
+  $options = array(
+    'langcode' => $message['langcode'],
+  );
+  switch ($key) {
+    case 'contact_form':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = $params['subject'];
+      $message['body'][] = $params['body'];
+      break;
+  }
+}
+
+/**
+ * Implementation of hook_form_alter
+ */
+
+
+ function test_field_widget_form_alter(&$element, \Drupal\Core\Form\FormStateInterface $form_state, $context) {
+
+  // Add a css class to widget form elements for all fields of type mytype.
+  $field_definition = $context['items']
+    ->getFieldDefinition();
+  if ($field_definition
+    ->getType() == 'text') {
+
+    // Be sure not to overwrite existing attributes.
+    $element['#attributes']['class'][] = 'myclass121212';
+  }
+}
+
+
+/**
+ * Alter the form id
+ */
+function test_form_resume_form_id_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+  // Modification for the form with the given BASE_FORM_ID goes here. For
+  // example, if BASE_FORM_ID is "node_form", this code would run on every
+  // node form, regardless of node type.
+  // Add a checkbox to the node form about agreeing to terms of use.
+  $form['terms_of_use'] = [
+    '#type' => 'checkbox',
+    '#title' => t("I agree with the website's terms and conditions."),
+    '#required' => TRUE,
+  ];
+}
+/**
+ * Hook_form_alter()
+ */
+
+ function test_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+
+  // echo ("Hello");
+
+  if($form_id == 'resume_form_id'){
+
+    // echo ("Hello2");
+
+     $form['actions']['submit']['#value'] = t('feedback22');
+    //  $form['candidate_name']['#attributes']['class'] = array('testtest11', 'testtest22' , 'testtest33')         ;
+     $form['candidate_name']['#attributes']['class'] = array('test112233');
+    //  echo("<pre>");
+    //  print_r($form);
+    //  echo("<pre>");
+    //  exit;
+
+    $form['terms_of_use11'] = [
+      '#type' => 'checkbox',
+      '#title' => t("I agree with the website's terms and conditions."),
+      // '#required' => TRUE,
+    ];
+
+  }
+
+ }
+
+
+//  function hook_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+//   if (isset($form['type']) && $form['type']['#value'] . '_node_settings' == $form_id) {
+//     $upload_enabled_types = \Drupal::config('mymodule.settings')
+//       ->get('upload_enabled_types');
+//     $form['workflow']['upload_' . $form['type']['#value']] = [
+//       '#type' => 'radios',
+//       '#title' => t('Attachments'),
+//       '#default_value' => in_array($form['type']['#value'], $upload_enabled_types) ? 1 : 0,
+//       '#options' => [
+//         t('Disabled'),
+//         t('Enabled'),
+//       ],
+//     ];
+
+//     // Add a custom submit handler to save the array of types back to the config file.
+//     $form['actions']['submit']['#submit'][] = 'mymodule_upload_enabled_types_submit';
+//   }
+// }

@@ -1,0 +1,14 @@
+test.form:
+  path: "/test/addform"
+  defaults:
+    _title: "Application form"
+    _form: '\Drupal\test\Form\addForm'
+  requirements:
+    _permission: "access content"
+# test.addformrouting:
+#   path: "/addform"
+#   defaults:
+#     _Form: '\Drupal\test\Form\addform'
+#     _title: "Add Enquiry"
+#   requirements:
+#     _permission: "access content"

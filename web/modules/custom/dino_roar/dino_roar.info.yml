@@ -1,0 +1,5 @@
+name: DINO ROAR
+type: module
+description: "roar you"
+package: Sample
+core_version_requirement: ^9 || ^10
